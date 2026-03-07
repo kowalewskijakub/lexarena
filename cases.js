@@ -1,0 +1,80 @@
+// Mock legal cases for BUBA game
+// Each case has facts, a question, AI response paragraphs (some are hallucinations), and model answer
+
+export const cases = [
+    {
+        id: 1,
+        category: 'Prawo Cywilne',
+        difficulty: 'easy',
+        title: 'Wady oświadczenia woli',
+        facts: `Jan Kowalski, 72-letni emeryt, zawarł w dniu 15 marca 2025 r. umowę sprzedaży swojego mieszkania o wartości rynkowej 450 000 zł za kwotę 120 000 zł na rzecz Adama Nowaka. Pan Kowalski cierpi na początkowe stadium demencji, o czym pan Nowak wiedział. Syn pana Kowalskiego — Piotr — chce podważyć tę umowę.`,
+        question: 'Czy Piotr Kowalski może skutecznie podważyć umowę sprzedaży? Na jakiej podstawie prawnej?',
+        aiParagraphs: [
+            { text: 'Umowa sprzedaży nieruchomości zawarta przez osobę dotkniętą zaburzeniami psychicznymi może być uznana za nieważną na podstawie art. 82 Kodeksu cywilnego, który stanowi, że nieważne jest oświadczenie woli złożone przez osobę, która z jakichkolwiek powodów znajdowała się w stanie wyłączającym świadome albo swobodne powzięcie decyzji i wyrażenie woli.', isHallucination: false },
+            { text: 'Zgodnie z art. 388 KC, jeśli jedna ze stron wyzyskuje przymusowe położenie, niedołęstwo lub niedoświadczenie drugiej strony, w zamian za swoje świadczenie przyjmuje albo zastrzega dla siebie świadczenie, którego wartość w chwili zawarcia umowy przewyższa w rażącym stopniu wartość jej własnego świadczenia, druga strona może żądać zmniejszenia swego świadczenia lub zwiększenia należnego jej świadczenia, a w wypadku gdy jedno i drugie byłoby nadmiernie utrudnione, żądać unieważnienia umowy.', isHallucination: false },
+            { text: 'Na podstawie art. 84a KC, wprowadzonego nowelizacją z 2023 roku, syn pana Kowalskiego ma prawo wnieść powództwo o stwierdzenie nieważności umowy w imieniu rodzica w terminie 6 miesięcy od dnia, w którym dowiedział się o zawarciu umowy, niezależnie od tego, czy posiada pełnomocnictwo.', isHallucination: true, explanation: 'Art. 84a KC nie istnieje. Nie było takiej nowelizacji w 2023 r. Syn musiałby działać jako przedstawiciel ustawowy (po ubezwłasnowolnieniu) lub na podstawie pełnomocnictwa.' },
+            { text: 'Termin przedawnienia roszczenia o stwierdzenie nieważności czynności prawnej na podstawie art. 82 KC wynosi 10 lat od dnia dokonania czynności, zgodnie z ogólnymi zasadami przedawnienia roszczeń majątkowych.', isHallucination: true, explanation: 'Nieważność bezwzględna (art. 82 KC) nie podlega przedawnieniu — czynność jest nieważna z mocy prawa (ex lege), nie trzeba jej „unieważniać" w terminie.' },
+        ],
+        modelAnswer: 'Umowa może zostać podważona na podstawie art. 82 KC (nieważność bezwzględna z powodu stanu wyłączającego świadome powzięcie decyzji) oraz art. 388 KC (wyzysk). Nieważność z art. 82 KC ma charakter bezwzględny i nie podlega przedawnieniu.',
+    },
+    {
+        id: 2,
+        category: 'Prawo Karne',
+        difficulty: 'medium',
+        title: 'Obrona konieczna',
+        facts: `W dniu 10 stycznia 2026 r. o godzinie 23:00, Anna Malinowska wracała do domu boczną ulicą. Została zaatakowana przez nieznanego mężczyznę, który próbował wyrwać jej torebkę. W trakcie szarpaniny Anna użyła gazu pieprzowego, a następnie kopnęła napastnika w kolano, powodując u niego złamanie rzepki. Napastnik upadł, a Anna oddaliła się z miejsca zdarzenia i zadzwoniła na policję.`,
+        question: 'Czy Anna Malinowska działała w granicach obrony koniecznej? Czy może ponieść odpowiedzialność karną?',
+        aiParagraphs: [
+            { text: 'Zgodnie z art. 25 § 1 Kodeksu karnego, nie popełnia przestępstwa, kto w obronie koniecznej odpiera bezpośredni, bezprawny zamach na jakiekolwiek dobro chronione prawem. Anna odpierała bezpośredni zamach na swoje mienie i nietykalność cielesną, co mieści się w definicji obrony koniecznej.', isHallucination: false },
+            { text: 'Użycie gazu pieprzowego jest legalne w Polsce i stanowi proporcjonalny środek obrony przed napaścią. Kopnięcie powodujące złamanie rzepki, choć spowodowało poważniejszy skutek, było reakcją w trakcie trwającego zamachu, co przemawia za uznaniem działania w ramach obrony koniecznej.', isHallucination: false },
+            { text: 'Zgodnie z art. 25 § 2a KK, w przypadku gdy zamach nastąpił w porze nocnej (między godziną 22:00 a 6:00), osoba broniąca się jest automatycznie zwolniona z odpowiedzialności karnej, nawet jeśli przekroczyła granice obrony koniecznej. Przepis ten został wprowadzony nowelizacją z 2022 roku.', isHallucination: true, explanation: 'Art. 25 § 2a KK nie istnieje. Nie ma w polskim prawie automatycznego zwolnienia z odpowiedzialności za przekroczenie obrony koniecznej w porze nocnej. Istnieje art. 25 § 3 KK dotyczący strachu/wzburzenia, ale nie dotyczy pory nocnej.' },
+            { text: 'Na podstawie znanego orzeczenia Sądu Najwyższego z dnia 4 kwietnia 2019 r. (sygn. akt II KK 73/19), ustalono że środki obrony powinny być proporcjonalne do zamachu, ale nie muszą być identyczne. Obrona może być intensywniejsza niż zamach, jeżeli jest to uzasadnione okolicznościami.', isHallucination: true, explanation: 'Ta konkretna sygnatura i data orzeczenia SN są zmyślone. Choć teza o proporcjonalności obrony jest prawidłowa co do zasady, podana sygnatura to halucynacja AI.' },
+        ],
+        modelAnswer: 'Anna działała w granicach obrony koniecznej (art. 25 § 1 KK). Reakcja była proporcjonalna — odpierała bezpośredni zamach na mienie i bezpieczeństwo. Nie ma przepisu zwalniającego automatycznie z odpowiedzialności w porze nocnej. Przy ocenie proporcjonalności sąd weźmie pod uwagę dynamikę zdarzenia i strach ofiary (art. 25 § 3 KK).',
+    },
+    {
+        id: 3,
+        category: 'Prawo Administracyjne',
+        difficulty: 'hard',
+        title: 'Odmowa wydania pozwolenia na budowę',
+        facts: `Spółka „BudMax" sp. z o.o. złożyła wniosek o wydanie pozwolenia na budowę budynku mieszkalnego wielorodzinnego na działce nr 234/5 w Warszawie. Starosta odmówił wydania pozwolenia, wskazując że projekt jest niezgodny z miejscowym planem zagospodarowania przestrzennego (MPZP), który dla tej działki przewiduje zabudowę jednorodzinną. Spółka uważa, że MPZP jest nieaktualny i został uchwalony z naruszeniem procedury.`,
+        question: 'Jakie środki prawne przysługują spółce BudMax? Czy może kwestionować MPZP w ramach odwołania od decyzji starosty?',
+        aiParagraphs: [
+            { text: 'Spółce BudMax przysługuje odwołanie od decyzji starosty do wojewody na podstawie art. 127 § 1 Kodeksu postępowania administracyjnego, w terminie 14 dni od dnia doręczenia decyzji. Odwołanie nie wymaga szczegółowego uzasadnienia — wystarczy wyrażenie niezadowolenia z decyzji.', isHallucination: false },
+            { text: 'Kwestionowanie miejscowego planu zagospodarowania przestrzennego nie jest możliwe w ramach standardowego odwołania od decyzji administracyjnej. MPZP jest aktem prawa miejscowego i podlega kontroli sądu administracyjnego — można go zaskarżyć w trybie art. 101 ustawy o samorządzie gminnym, jeżeli narusza interes prawny skarżącego.', isHallucination: false },
+            { text: 'Zgodnie z art. 35a Prawa budowlanego, w przypadku gdy MPZP został uchwalony ponad 15 lat temu i nie był aktualizowany, inwestor ma prawo żądać wydania pozwolenia na budowę na podstawie studium uwarunkowań i kierunków zagospodarowania przestrzennego gminy, które ma w takim przypadku pierwszeństwo przed MPZP.', isHallucination: true, explanation: 'Art. 35a Prawa budowlanego nie istnieje. Studium nie ma nigdy pierwszeństwa przed MPZP — to MPZP jest aktem prawa miejscowego, a studium jest jedynie dokumentem kierunkowym, który nie stanowi podstawy do wydawania decyzji administracyjnych.' },
+            { text: 'Ponadto, spółka może złożyć skargę do Wojewódzkiego Sądu Administracyjnego na uchwałę rady gminy w sprawie MPZP, jeśli wykaże, że plan został uchwalony z naruszeniem procedury ustawowej określonej w ustawie o planowaniu i zagospodarowaniu przestrzennym. Termin na złożenie takiej skargi wynosi 30 dni od dnia podjęcia uchwały, co w przypadku starszych planów czyni tę ścieżkę niedostępną.', isHallucination: true, explanation: 'Termin 30 dni dotyczy zaskarżenia uchwały przez organ nadzoru (wojewodę). Osoba, której interes prawny został naruszony, może zaskarżyć uchwałę w trybie art. 101 u.s.g. bez ograniczenia terminem 30-dniowym — wystarczy wykazanie naruszenia interesu prawnego.' },
+        ],
+        modelAnswer: 'Spółce przysługuje odwołanie do wojewody (art. 127 KPA). MPZP można kwestionować w trybie art. 101 u.s.g. (skarga na akt prawa miejscowego). Studium nigdy nie ma pierwszeństwa przed MPZP. Skarga na uchwałę MPZP nie jest ograniczona terminem 30-dniowym dla osób, których interes prawny został naruszony.',
+    },
+    {
+        id: 4,
+        category: 'Prawo Pracy',
+        difficulty: 'easy',
+        title: 'Wypowiedzenie umowy o pracę',
+        facts: `Maria Zielińska, zatrudniona na umowę o pracę na czas nieokreślony od 5 lat w firmie IT, została zwolniona z zachowaniem 3-miesięcznego okresu wypowiedzenia. Pracodawca jako przyczynę podał „redukcję etatów", jednak w tym samym tygodniu zatrudnił na jej stanowisko nowego pracownika. Pani Zielińska jest w 4. miesiącu ciąży, o czym poinformowała pracodawcę dzień po otrzymaniu wypowiedzenia.`,
+        question: 'Czy wypowiedzenie jest skuteczne? Jakie roszczenia przysługują Marii Zielińskiej?',
+        aiParagraphs: [
+            { text: 'Zgodnie z art. 177 § 1 Kodeksu pracy, pracodawca nie może wypowiedzieć ani rozwiązać umowy o pracę w okresie ciąży, a także w okresie urlopu macierzyńskiego pracownicy, chyba że zachodzą przyczyny uzasadniające rozwiązanie umowy bez wypowiedzenia z jej winy i reprezentująca pracownicę zakładowa organizacja związkowa wyraziła na to zgodę.', isHallucination: false },
+            { text: 'Ochrona z art. 177 KP przysługuje pracownicy nawet jeśli w chwili wypowiedzenia nie wiedziała o ciąży lub nie poinformowała o niej pracodawcy. Jeśli ciąża istniała w dniu wypowiedzenia, wypowiedzenie jest bezskuteczne, a pracodawca ma obowiązek cofnąć wypowiedzenie po uzyskaniu informacji o ciąży.', isHallucination: false },
+            { text: 'Ponadto, podanie fikcyjnej przyczyny wypowiedzenia (redukcja etatów przy jednoczesnym zatrudnieniu nowego pracownika) stanowi naruszenie art. 30 § 4 KP, który wymaga podania prawdziwej, konkretnej i uzasadnionej przyczyny wypowiedzenia umowy na czas nieokreślony.', isHallucination: false },
+            { text: 'Zgodnie z art. 177 § 4 KP, pracownica w ciąży, której wypowiedziano umowę o pracę, ma prawo do odszkodowania w wysokości 12-krotności jej miesięcznego wynagrodzenia, niezależnie od tego, czy zdecyduje się na przywrócenie do pracy, czy na odszkodowanie. Jest to kara dla pracodawcy za naruszenie ochrony macierzyńskiej.', isHallucination: true, explanation: 'Art. 177 § 4 KP nie istnieje w takiej formie. Odszkodowanie za niezgodne z prawem wypowiedzenie reguluje art. 47¹ KP i wynosi od wynagrodzenia za okres od 2 tygodni do 3 miesięcy, nie 12-krotność. Alternatywnie pracownica może żądać przywrócenia do pracy (art. 45 KP).' },
+        ],
+        modelAnswer: 'Wypowiedzenie jest bezskuteczne — ochrona z art. 177 KP obejmuje pracownicę w ciąży nawet jeśli nie wiedziała o niej w chwili wypowiedzenia. Maria może żądać przywrócenia do pracy lub odszkodowania (art. 45/47¹ KP, nie fikcyjne 12-krotności). Fikcyjna przyczyna narusza art. 30 § 4 KP.',
+    },
+    {
+        id: 5,
+        category: 'Prawo Cywilne',
+        difficulty: 'medium',
+        title: 'Odpowiedzialność za produkt niebezpieczny',
+        facts: `Ewa Nowakowska kupiła blender marki "KuchenPro" w sklepie internetowym. Po dwóch tygodniach użytkowania, podczas normalnego korzystania z urządzenia, pokrywka blendera oderwała się, powodując poparzenie gorącą zupą. Ewa doznała oparzeń II stopnia ręki i twarzy. Producent blendera ma siedzibę w Niemczech, a dystrybutor w Polsce.`,
+        question: 'Przeciwko komu i na jakiej podstawie prawnej Ewa może dochodzić odszkodowania?',
+        aiParagraphs: [
+            { text: 'Ewa może dochodzić odszkodowania na podstawie przepisów o odpowiedzialności za produkt niebezpieczny (art. 449¹-449¹¹ KC). Odpowiedzialność ta ma charakter obiektywny — producent odpowiada niezależnie od winy, jeżeli produkt był niebezpieczny i spowodował szkodę.', isHallucination: false },
+            { text: 'Zgodnie z art. 449⁵ KC, odpowiedzialnym jest producent produktu z siedzibą w Niemczech. Ponieważ producent ma siedzibę w UE, Ewa może pozwać go bezpośrednio przed polskim sądem na podstawie Rozporządzenia Bruksela I bis, jako konsument.', isHallucination: false },
+            { text: 'Na podstawie art. 449⁸ KC, jeżeli producent nie jest znany lub jego siedziba znajduje się poza terytorium RP, odpowiedzialność ponosi wyłącznie sprzedawca detaliczny, który sprzedał produkt. Dystrybutor jest zawsze zwolniony z odpowiedzialności za produkt niebezpieczny na mocy tego artykułu.', isHallucination: true, explanation: 'Art. 449⁸ KC mówi o odpowiedzialności importera i dystrybutora — dystrybutor NIE jest automatycznie zwolniony z odpowiedzialności. Gdy producent ma siedzibę poza RP, odpowiada importer. Sprzedawca odpowiada tylko gdy nie można ustalić producenta ani importera.' },
+            { text: 'Ewa może żądać odszkodowania za koszty leczenia, utracone dochody, zadośćuczynienie za ból i cierpienie na podstawie art. 444-445 KC. Roszczenie przedawnia się w terminie 3 lat od dnia dowiedzenia się o szkodzie i osobie odpowiedzialnej (art. 449⁷ KC).', isHallucination: false },
+        ],
+        modelAnswer: 'Ewa może dochodzić roszczeń z tytułu odpowiedzialności za produkt niebezpieczny (art. 449¹ i nast. KC) od producenta (odpowiedzialność obiektywna). Dystrybutor polski nie jest automatycznie zwolniony z odpowiedzialności. Roszczenia obejmują odszkodowanie i zadośćuczynienie (art. 444-445 KC).',
+    },
+];
