@@ -751,69 +751,68 @@ a:hover {
   padding: 20px 0 20px;
 }
 
-/* Horizontal connector between tiles */
-.lt-conn {
-  width: 32px;
+/* Each node: main tile + optional L-shaped branch area below */
+.lt-node {
   flex-shrink: 0;
   position: relative;
-  min-height: 180px;
 }
 
-.lt-conn::before {
+/* Dashed connector between nodes */
+.lt-conn {
+  width: 28px;
+  flex-shrink: 0;
+  height: 0;
+  align-self: flex-start;
+  margin-top: 89px;
+  border-top: 2px dashed var(--tree-color, var(--primary));
+  opacity: 0.2;
+}
+
+/* L-shaped branch: single L-connector + row, absolutely positioned */
+.lt-stem {
+  display: none;
+}
+
+.lt-branches {
+  position: absolute;
+  top: calc(178px + 20px);
+  left: 49px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 28px;
+}
+
+/* L-shaped connector: vertical + horizontal as one piece */
+.lt-branches::before {
   content: '';
   position: absolute;
-  top: 88px;
-  left: 4px;
-  right: 4px;
-  height: 2px;
-  background: var(--tree-color, var(--primary));
-  opacity: 0.25;
-  border-radius: 1px;
-}
-
-/* Node wrapper — parent tile with branches below */
-.lt-node-with-branches {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.lt-node-with-branches::after {
-  content: '';
+  top: -20px;
+  left: 28px;
   width: 2px;
-  height: 16px;
+  height: calc(50% + 20px);
   background: var(--tree-color, var(--primary));
-  opacity: 0.25;
-  flex-shrink: 0;
+  opacity: 0.2;
 }
 
-/* Branch row under parent */
-.lt-branches {
-  display: flex;
-  align-items: flex-start;
-}
-
-.lt-branch-conn-h {
-  width: 10px;
-  align-self: stretch;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.lt-branch-conn-h::before {
+.lt-branches::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 0;
-  right: 0;
+  width: 28px;
   height: 2px;
   background: var(--tree-color, var(--primary));
-  opacity: 0.15;
+  opacity: 0.2;
 }
 
 .lt-branch {
-  width: 135px;
+  width: 130px;
+}
+
+/* Extra bottom padding on sections that have branches so they don't overlap next section */
+.lt-node.has-branches {
+  margin-bottom: 210px;
 }
 
 /* Tile base */

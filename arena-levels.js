@@ -121,16 +121,15 @@ function renderTrack(tree) {
 
     // Wrap tile + its branches in a column container
     const hasBranches = lvl.branches && lvl.branches.length;
+    html += `<div class="lt-node ${hasBranches ? 'has-branches' : ''}">`;
+    html += renderTile(lvl);
     if (hasBranches) {
-      html += `<div class="lt-node-with-branches">`;
-      html += renderTile(lvl);
+      html += `<div class="lt-stem"></div>`;
       html += `<div class="lt-branches">`;
-      html += lvl.branches.map(b => renderBranchTile(b)).join(`<div class="lt-branch-conn-h"></div>`);
+      html += lvl.branches.map(b => renderBranchTile(b)).join('');
       html += `</div>`;
-      html += `</div>`;
-    } else {
-      html += renderTile(lvl);
     }
+    html += `</div>`;
   });
 
   return html;
