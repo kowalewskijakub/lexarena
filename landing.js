@@ -1,6 +1,6 @@
 // Landing page module
 export function renderLanding() {
-    return `
+  return `
     <section class="hero">
       <div class="floating-icons" id="floating-icons"></div>
       <div class="hero-content">
@@ -49,7 +49,7 @@ export function renderLanding() {
     <section class="section">
       <div class="container">
         <div class="section-header">
-          <h2>Jak działa BUBA?</h2>
+          <h2>Jak działa Lex Arena?</h2>
           <p>Gamifikacja edukacji prawnej w starciu z halucynacjami AI</p>
         </div>
         <div class="grid-4">
@@ -80,7 +80,7 @@ export function renderLanding() {
     <section class="section problems-section">
       <div class="container">
         <div class="section-header">
-          <h2>Dla kogo jest BUBA?</h2>
+          <h2>Dla kogo jest Lex Arena?</h2>
           <p>Poznaj naszych użytkowników</p>
         </div>
         <div class="grid-2">
@@ -106,32 +106,32 @@ export function renderLanding() {
 
     <footer class="footer">
       <div class="container">
-        <p>© 2026 BUBA — Gamifikacja Edukacji Prawniczej z AI</p>
+        <p>© 2026 Lex Arena — Gamifikacja Edukacji Prawniczej z AI</p>
       </div>
     </footer>
   `;
 }
 
 export function initLanding() {
-    // Floating icons
-    const container = document.getElementById('floating-icons');
-    if (container) {
-        const icons = ['§', '⚖️', '📋', '🔍', '🤖', '💼', '📜', '🏛️', '⚡', '🎓'];
-        icons.forEach((icon, i) => {
-            const el = document.createElement('span');
-            el.className = 'floating-icon';
-            el.textContent = icon;
-            el.style.left = `${Math.random() * 100}%`;
-            el.style.animationDelay = `${i * 2}s`;
-            el.style.animationDuration = `${15 + Math.random() * 10}s`;
-            container.appendChild(el);
-        });
-    }
+  // Floating icons
+  const container = document.getElementById('floating-icons');
+  if (container) {
+    const icons = ['§', '⚖️', '📋', '🔍', '🤖', '💼', '📜', '🏛️', '⚡', '🎓'];
+    icons.forEach((icon, i) => {
+      const el = document.createElement('span');
+      el.className = 'floating-icon';
+      el.textContent = icon;
+      el.style.left = `${Math.random() * 100}%`;
+      el.style.animationDelay = `${i * 2}s`;
+      el.style.animationDuration = `${15 + Math.random() * 10}s`;
+      container.appendChild(el);
+    });
+  }
 
-    document.getElementById('hero-cta')?.addEventListener('click', () => {
-        window.location.hash = '#dashboard';
-    });
-    document.getElementById('hero-demo')?.addEventListener('click', () => {
-        window.location.hash = '#game';
-    });
+  document.getElementById('hero-cta')?.addEventListener('click', () => {
+    window.location.hash = '#dashboard';
+  });
+  document.getElementById('hero-demo')?.addEventListener('click', () => {
+    window.location.hash = '#game';
+  });
 }

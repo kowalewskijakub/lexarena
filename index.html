@@ -1,49 +1,56 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BUBA — Gamifikacja Edukacji Prawniczej z AI</title>
-  <meta name="description" content="Ucz się prawa rozwiązując kazusy, konfrontuj halucynacje AI i rywalizuj na rankingach. Platforma dla studentów prawa, aplikantów i prawników." />
-  <meta name="keywords" content="prawo, edukacja prawnicza, AI, gamifikacja, kazusy, aplikacja radcowska, aplikacja adwokacka" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lex Arena — Gamifikacja Edukacji Prawniczej z AI</title>
+    <meta name="description"
+        content="Ucz się prawa rozwiązując kazusy, konfrontuj halucynacje AI i rywalizuj na rankingach. Platforma dla studentów prawa, aplikantów i prawników." />
+    <meta name="keywords"
+        content="prawo, edukacja prawnicza, AI, gamifikacja, kazusy, aplikacja radcowska, aplikacja adwokacka" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
 </head>
+
 <body>
-  <!-- Navigation -->
-  <nav id="navbar" class="navbar">
-    <div class="navbar-inner">
-      <a href="#landing" class="navbar-logo">
-        <span class="logo-icon">⚖️</span>
-        <span class="logo-text">BUBA</span>
-      </a>
-      <div class="navbar-links" id="nav-links">
-        <a href="#landing" class="nav-link" data-page="landing">Strona główna</a>
-        <a href="#dashboard" class="nav-link" data-page="dashboard">Dashboard</a>
-        <a href="#game" class="nav-link" data-page="game">Rozwiąż kazus</a>
-        <a href="#leaderboard" class="nav-link" data-page="leaderboard">Ranking</a>
-      </div>
-      <div class="navbar-user" id="navbar-user">
-        <div class="user-xp">
-          <span class="xp-icon">⚡</span>
-          <span class="xp-value" id="nav-xp">0</span> XP
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="navbar-inner">
+            <a href="#landing" class="navbar-logo">
+                <span class="logo-icon">⚔️</span>
+                <span class="logo-text">Lex Arena</span>
+            </a>
+            <div class="navbar-links" id="nav-links">
+                <a href="#landing" class="nav-link" data-page="landing">Strona główna</a>
+                <a href="#game" class="nav-link" data-page="game">Arena</a>
+                <a href="#dashboard" class="nav-link" data-page="dashboard">Dashboard</a>
+                <a href="#leaderboard" class="nav-link" data-page="leaderboard">Ranking</a>
+            </div>
+            <div class="navbar-user" id="navbar-user">
+                <div class="user-xp">
+                    <span class="xp-icon">⚡</span>
+                    <span class="xp-value" id="nav-xp">0</span> XP
+                </div>
+                <div class="user-avatar" id="nav-avatar">BŁ</div>
+            </div>
+            <button class="navbar-toggle" id="navbar-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-        <div class="user-avatar" id="nav-avatar">BŁ</div>
-      </div>
-      <button class="navbar-toggle" id="navbar-toggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Main Content -->
-  <main id="main-content"></main>
+    <!-- Main Content -->
+    <main id="main-content"></main>
 
-  <!-- Toast Notifications -->
-  <div id="toast-container" class="toast-container"></div>
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
 
-  <script type="module" src="/app.js"></script>
+    <script type="module" src="/app.js"></script>
 </body>
+
 </html>

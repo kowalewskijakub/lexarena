@@ -67,7 +67,7 @@ export function renderGame() {
   return `
     <div class="container">
       <div class="game-header">
-        <h1>🎮 Rozwiąż kazus</h1>
+        <h1>🎮 Arena</h1>
         <div class="game-controls">
           <div class="difficulty-selector">${diffBtns}</div>
           <button class="btn btn-primary btn-sm" id="submit-case">⚡ Sprawdź odpowiedzi</button>

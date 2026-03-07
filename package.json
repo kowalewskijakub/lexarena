@@ -2,7 +2,7 @@
   "name": "buba",
   "private": true,
   "version": "1.0.0",
-  "description": "BUBA — Gamifikacja edukacji prawniczej z AI",
+  "description": "Lex Arena — Gamifikacja edukacji prawniczej z AI",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
