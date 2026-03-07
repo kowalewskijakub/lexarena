@@ -2,23 +2,37 @@
 import { mockUser, mockCompetitions } from './data.js';
 
 export function renderDashboard() {
-    const u = mockUser;
-    const progressItems = Object.entries(u.progress).map(([key, val]) => {
-        const labels = {
-            cywilne: 'Prawo Cywilne', karne: 'Prawo Karne', administracyjne: 'Prawo Administracyjne',
-            pracy: 'Prawo Pracy', konstytucyjne: 'Prawo Konstytucyjne', handlowe: 'Prawo Handlowe',
-        };
-        return `
+  const u = mockUser;
+  function getSeniorityDetails(pct) {
+    if (pct < 20) return { title: 'Stażysta', color: '#94a3b8', gradient: ['#475569', '#94a3b8'] };
+    if (pct < 40) return { title: 'Junior', color: '#10b981', gradient: ['#059669', '#34d399'] };
+    if (pct < 60) return { title: 'Mid', color: '#3b82f6', gradient: ['#2563eb', '#60a5fa'] };
+    if (pct < 85) return { title: 'Senior', color: '#8b5cf6', gradient: ['#7c3aed', '#a78bfa'] };
+    return { title: 'Partner', color: '#f59e0b', gradient: ['#d97706', '#fbbf24'] };
+  }
+
+  const progressItems = Object.entries(u.progress).map(([key, val]) => {
+    const labels = {
+      cywilne: 'Prawo Cywilne', karne: 'Prawo Karne', administracyjne: 'Prawo Administracyjne',
+      pracy: 'Prawo Pracy', konstytucyjne: 'Prawo Konstytucyjne', handlowe: 'Prawo Handlowe',
+    };
+    const s = getSeniorityDetails(val);
+    return `
       <div class="progress-item">
         <div class="progress-header">
-          <span class="progress-name">${labels[key] || key}</span>
-          <span class="progress-pct">${val}%</span>
+          <div class="progress-info">
+            <span class="progress-name">${labels[key] || key}</span>
+            <span class="progress-seniority" style="color: ${s.color}; border-color: ${s.color};">${s.title}</span>
+          </div>
+          <span class="progress-pct" style="color: ${s.color};">${val}%</span>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%" data-target="${val}"></div></div>
+        <div class="progress-bar">
+          <div class="progress-fill seniority-fill" style="width:0%; background: linear-gradient(90deg, ${s.gradient[0]}, ${s.gradient[1]}); box-shadow: 0 0 10px ${s.color}66;" data-target="${val}"></div>
+        </div>
       </div>`;
-    }).join('');
+  }).join('');
 
-    const competitionCards = mockCompetitions.map(c => `
+  const competitionCards = mockCompetitions.map(c => `
     <div class="competition-card">
       <div class="competition-icon">${c.icon}</div>
       <div class="competition-info">
@@ -29,7 +43,7 @@ export function renderDashboard() {
       <span class="competition-badge ${c.status}">${c.status === 'active' ? '🟢 Aktywny' : '🔵 Wkrótce'}</span>
     </div>`).join('');
 
-    return `
+  return `
     <div class="dashboard container">
       <div class="dashboard-greeting">
         <h1>Cześć, ${u.name}! 👋</h1>
@@ -80,14 +94,14 @@ export function renderDashboard() {
 }
 
 export function initDashboard() {
-    // Animate progress bars
-    setTimeout(() => {
-        document.querySelectorAll('.progress-fill').forEach(el => {
-            el.style.width = el.dataset.target + '%';
-        });
-    }, 100);
-
-    document.getElementById('start-case-btn')?.addEventListener('click', () => {
-        window.location.hash = '#game';
+  // Animate progress bars
+  setTimeout(() => {
+    document.querySelectorAll('.progress-fill').forEach(el => {
+      el.style.width = el.dataset.target + '%';
     });
+  }, 100);
+
+  document.getElementById('start-case-btn')?.addEventListener('click', () => {
+    window.location.hash = '#game';
+  });
 }

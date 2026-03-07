@@ -599,38 +599,59 @@ a:hover {
 }
 
 .progress-item {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .progress-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 8px;
 }
 
-.progress-name {
-  font-size: 0.9rem;
-  font-weight: 500;
+.progress-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.progress-pct {
-  font-size: 0.85rem;
-  color: var(--primary-light);
+.progress-name {
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
+.progress-seniority {
+  font-size: 0.70rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border: 1px solid;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.progress-pct {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
 .progress-bar {
-  height: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 4px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 5px;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  border-radius: 4px;
-  transition: width 1s ease;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 5px;
+  transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.seniority-fill {
+  background: var(--primary) !important;
+  /* Overriden by inline styling in JS */
 }
 
 .competitions-section {
@@ -1549,7 +1570,7 @@ a:hover {
   gap: 16px;
 }
 
-.stat-label {
+.result-stats-container .stat-label {
   flex: 0 0 150px;
   font-size: 0.85rem;
   color: var(--text-muted);
@@ -1606,7 +1627,7 @@ a:hover {
   pointer-events: none;
 }
 
-.stat-value {
+.result-stats-container .stat-value {
   flex: 0 0 50px;
   font-size: 1.1rem;
   font-weight: 700;
