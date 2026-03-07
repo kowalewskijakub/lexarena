@@ -176,6 +176,7 @@ function showResult() {
   resultEl.style.display = 'flex';
   resultEl.innerHTML = `
     <div class="result-card">
+      <button class="result-close-x" id="result-close-x">✕</button>
       <div class="result-art-bg"></div>
       <h2>${score >= 200 ? '🎉 Świetnie!' : score >= 100 ? '👍 Nieźle!' : '💪 Próbuj dalej!'}</h2>
       <div class="result-score ${grade}">+${score} XP</div>
@@ -221,6 +222,16 @@ function showResult() {
   });
   document.getElementById('result-close')?.addEventListener('click', () => {
     resultEl.style.display = 'none';
+  });
+  document.getElementById('result-close-x')?.addEventListener('click', () => {
+    resultEl.style.display = 'none';
+  });
+  
+  // Close when clicking outside the card
+  resultEl.addEventListener('click', (e) => {
+    if (e.target === resultEl) {
+      resultEl.style.display = 'none';
+    }
   });
 }
 
