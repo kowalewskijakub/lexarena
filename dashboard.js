@@ -4,17 +4,17 @@ import { mockUser, mockCompetitions } from './data.js';
 export function renderDashboard() {
   const u = mockUser;
   function getSeniorityDetails(pct) {
-    if (pct < 20) return { title: 'Stażysta', color: '#94a3b8', gradient: ['#475569', '#94a3b8'] };
-    if (pct < 40) return { title: 'Junior', color: '#10b981', gradient: ['#059669', '#34d399'] };
-    if (pct < 60) return { title: 'Mid', color: '#3b82f6', gradient: ['#2563eb', '#60a5fa'] };
-    if (pct < 85) return { title: 'Senior', color: '#8b5cf6', gradient: ['#7c3aed', '#a78bfa'] };
-    return { title: 'Partner', color: '#f59e0b', gradient: ['#d97706', '#fbbf24'] };
+    if (pct < 20) return { title: 'Początkujący', color: '#94a3b8', gradient: ['#475569', '#94a3b8'] };
+    if (pct < 40) return { title: 'Podstawowy', color: '#10b981', gradient: ['#059669', '#34d399'] };
+    if (pct < 60) return { title: 'Średniozaawansowany', color: '#3b82f6', gradient: ['#2563eb', '#60a5fa'] };
+    if (pct < 85) return { title: 'Zaawansowany', color: '#8b5cf6', gradient: ['#7c3aed', '#a78bfa'] };
+    return { title: 'Ekspert', color: '#f59e0b', gradient: ['#d97706', '#fbbf24'] };
   }
 
   const progressItems = Object.entries(u.progress).map(([key, val]) => {
     const labels = {
-      cywilne: 'Prawo Cywilne', karne: 'Prawo Karne', administracyjne: 'Prawo Administracyjne',
-      pracy: 'Prawo Pracy', konstytucyjne: 'Prawo Konstytucyjne', handlowe: 'Prawo Handlowe',
+      cywilne: 'Prawo cywilne', karne: 'Prawo karne', administracyjne: 'Prawo administracyjne',
+      pracy: 'Prawo pracy', konstytucyjne: 'Prawo konstytucyjne', handlowe: 'Prawo handlowe',
     };
     const s = getSeniorityDetails(val);
     return `
@@ -79,9 +79,6 @@ export function renderDashboard() {
             <h2>📊 Postępy w nauce</h2>
             ${progressItems}
           </div>
-          <div style="margin-top:32px">
-            <button class="btn btn-primary btn-lg" id="start-case-btn" style="width:100%">🎮 Rozwiąż nowy kazus</button>
-          </div>
         </div>
         <div>
           <div class="competitions-section">
@@ -101,7 +98,4 @@ export function initDashboard() {
     });
   }, 100);
 
-  document.getElementById('start-case-btn')?.addEventListener('click', () => {
-    window.location.hash = '#game';
-  });
 }
