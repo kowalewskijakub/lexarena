@@ -129,7 +129,7 @@ export function initLanding() {
   }
 
   document.getElementById('hero-cta')?.addEventListener('click', () => {
-    window.location.hash = '#dashboard';
+    window.location.hash = '#arena';
   });
   document.getElementById('hero-demo')?.addEventListener('click', () => {
     window.location.hash = '#arena';
