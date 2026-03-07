@@ -132,6 +132,6 @@ export function initLanding() {
     window.location.hash = '#dashboard';
   });
   document.getElementById('hero-demo')?.addEventListener('click', () => {
-    window.location.hash = '#game';
+    window.location.hash = '#arena';
   });
 }

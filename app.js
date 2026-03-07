@@ -1,6 +1,7 @@
 // BUBA App — Main router and state management
 import { renderLanding, initLanding } from './landing.js';
 import { renderDashboard, initDashboard } from './dashboard.js';
+import { renderArenaLevels, initArenaLevels } from './arena-levels.js';
 import { renderGame, initGame } from './game.js';
 import { renderLeaderboard, initLeaderboard } from './leaderboard.js';
 import { mockUser } from './data.js';
@@ -8,6 +9,7 @@ import { mockUser } from './data.js';
 const pages = {
     landing: { render: renderLanding, init: initLanding },
     dashboard: { render: renderDashboard, init: initDashboard },
+    arena: { render: renderArenaLevels, init: initArenaLevels },
     game: { render: renderGame, init: initGame },
     leaderboard: { render: renderLeaderboard, init: initLeaderboard },
 };
@@ -31,9 +33,10 @@ function navigate() {
         window.scrollTo(0, 0);
     }, 150);
 
-    // Update nav
+    // Update nav — game is a sub-page of arena
+    const navPage = page === 'game' ? 'arena' : page;
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.toggle('active', link.dataset.page === page);
+        link.classList.toggle('active', link.dataset.page === navPage);
     });
 
     // Show/hide navbar user info but keep layout stable
