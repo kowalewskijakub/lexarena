@@ -20,7 +20,7 @@ export const mockUser = {
 export const mockCompetitions = [
   {
     id: 1,
-    name: 'Challenge Kancelarii Wardyński',
+    name: 'Challenge Kancelarii Nexus',
     icon: '🏛️',
     status: 'active',
     endDate: '2026-03-21',

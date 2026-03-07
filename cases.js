@@ -16,6 +16,11 @@ export const cases = [
             { text: 'Termin przedawnienia roszczenia o stwierdzenie nieważności czynności prawnej na podstawie art. 82 KC wynosi 10 lat od dnia dokonania czynności, zgodnie z ogólnymi zasadami przedawnienia roszczeń majątkowych.', isHallucination: true, explanation: 'Nieważność bezwzględna (art. 82 KC) nie podlega przedawnieniu — czynność jest nieważna z mocy prawa (ex lege), nie trzeba jej „unieważniać" w terminie.' },
         ],
         modelAnswer: 'Umowa może zostać podważona na podstawie art. 82 KC (nieważność bezwzględna z powodu stanu wyłączającego świadome powzięcie decyzji) oraz art. 388 KC (wyzysk). Nieważność z art. 82 KC ma charakter bezwzględny i nie podlega przedawnieniu.',
+        stats: [
+            { label: 'Art. 82 KC', percentage: 85, median: 50 },
+            { label: 'Art. 388 KC', percentage: 65, median: 40 },
+            { label: 'Inna podstawa', percentage: 15, median: 20 }
+        ]
     },
     {
         id: 2,
@@ -31,6 +36,11 @@ export const cases = [
             { text: 'Na podstawie znanego orzeczenia Sądu Najwyższego z dnia 4 kwietnia 2019 r. (sygn. akt II KK 73/19), ustalono że środki obrony powinny być proporcjonalne do zamachu, ale nie muszą być identyczne. Obrona może być intensywniejsza niż zamach, jeżeli jest to uzasadnione okolicznościami.', isHallucination: true, explanation: 'Ta konkretna sygnatura i data orzeczenia SN są zmyślone. Choć teza o proporcjonalności obrony jest prawidłowa co do zasady, podana sygnatura to halucynacja AI.' },
         ],
         modelAnswer: 'Anna działała w granicach obrony koniecznej (art. 25 § 1 KK). Reakcja była proporcjonalna — odpierała bezpośredni zamach na mienie i bezpieczeństwo. Nie ma przepisu zwalniającego automatycznie z odpowiedzialności w porze nocnej. Przy ocenie proporcjonalności sąd weźmie pod uwagę dynamikę zdarzenia i strach ofiary (art. 25 § 3 KK).',
+        stats: [
+            { label: 'Obrona konieczna', percentage: 92, median: 70 },
+            { label: 'Przekroczenie granic', percentage: 25, median: 30 },
+            { label: 'Zwykła napaść', percentage: 5, median: 10 }
+        ]
     },
     {
         id: 3,
@@ -46,6 +56,11 @@ export const cases = [
             { text: 'Ponadto, spółka może złożyć skargę do Wojewódzkiego Sądu Administracyjnego na uchwałę rady gminy w sprawie MPZP, jeśli wykaże, że plan został uchwalony z naruszeniem procedury ustawowej określonej w ustawie o planowaniu i zagospodarowaniu przestrzennym. Termin na złożenie takiej skargi wynosi 30 dni od dnia podjęcia uchwały, co w przypadku starszych planów czyni tę ścieżkę niedostępną.', isHallucination: true, explanation: 'Termin 30 dni dotyczy zaskarżenia uchwały przez organ nadzoru (wojewodę). Osoba, której interes prawny został naruszony, może zaskarżyć uchwałę w trybie art. 101 u.s.g. bez ograniczenia terminem 30-dniowym — wystarczy wykazanie naruszenia interesu prawnego.' },
         ],
         modelAnswer: 'Spółce przysługuje odwołanie do wojewody (art. 127 KPA). MPZP można kwestionować w trybie art. 101 u.s.g. (skarga na akt prawa miejscowego). Studium nigdy nie ma pierwszeństwa przed MPZP. Skarga na uchwałę MPZP nie jest ograniczona terminem 30-dniowym dla osób, których interes prawny został naruszony.',
+        stats: [
+            { label: 'Odwołanie (KPA)', percentage: 78, median: 60 },
+            { label: 'Skarga (101 u.s.g.)', percentage: 45, median: 35 },
+            { label: 'Skarga do WSA', percentage: 30, median: 40 }
+        ]
     },
     {
         id: 4,
@@ -61,6 +76,11 @@ export const cases = [
             { text: 'Zgodnie z art. 177 § 4 KP, pracownica w ciąży, której wypowiedziano umowę o pracę, ma prawo do odszkodowania w wysokości 12-krotności jej miesięcznego wynagrodzenia, niezależnie od tego, czy zdecyduje się na przywrócenie do pracy, czy na odszkodowanie. Jest to kara dla pracodawcy za naruszenie ochrony macierzyńskiej.', isHallucination: true, explanation: 'Art. 177 § 4 KP nie istnieje w takiej formie. Odszkodowanie za niezgodne z prawem wypowiedzenie reguluje art. 47¹ KP i wynosi od wynagrodzenia za okres od 2 tygodni do 3 miesięcy, nie 12-krotność. Alternatywnie pracownica może żądać przywrócenia do pracy (art. 45 KP).' },
         ],
         modelAnswer: 'Wypowiedzenie jest bezskuteczne — ochrona z art. 177 KP obejmuje pracownicę w ciąży nawet jeśli nie wiedziała o niej w chwili wypowiedzenia. Maria może żądać przywrócenia do pracy lub odszkodowania (art. 45/47¹ KP, nie fikcyjne 12-krotności). Fikcyjna przyczyna narusza art. 30 § 4 KP.',
+        stats: [
+            { label: 'Art. 177 KP', percentage: 95, median: 80 },
+            { label: 'Fikcyjna przyczyna', percentage: 60, median: 50 },
+            { label: 'Milczenie pracodawcy', percentage: 10, median: 15 }
+        ]
     },
     {
         id: 5,
@@ -76,5 +96,10 @@ export const cases = [
             { text: 'Ewa może żądać odszkodowania za koszty leczenia, utracone dochody, zadośćuczynienie za ból i cierpienie na podstawie art. 444-445 KC. Roszczenie przedawnia się w terminie 3 lat od dnia dowiedzenia się o szkodzie i osobie odpowiedzialnej (art. 449⁷ KC).', isHallucination: false },
         ],
         modelAnswer: 'Ewa może dochodzić roszczeń z tytułu odpowiedzialności za produkt niebezpieczny (art. 449¹ i nast. KC) od producenta (odpowiedzialność obiektywna). Dystrybutor polski nie jest automatycznie zwolniony z odpowiedzialności. Roszczenia obejmują odszkodowanie i zadośćuczynienie (art. 444-445 KC).',
+        stats: [
+            { label: 'Art. 449¹ KC i nast.', percentage: 80, median: 60 },
+            { label: 'Odpowiedzialność dystrybutora', percentage: 30, median: 40 },
+            { label: 'Tylko odszkodowanie', percentage: 20, median: 30 }
+        ]
     },
 ];

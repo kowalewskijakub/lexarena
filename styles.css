@@ -948,6 +948,9 @@ a:hover {
   color: var(--text);
   outline: none;
   transition: border-color var(--transition), box-shadow var(--transition);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
 .doc-editor:focus {
@@ -1043,6 +1046,50 @@ a:hover {
 }
 
 /* LEX Dark Panel */
+.sip-search-bar {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 16px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 16px;
+}
+
+.sip-input {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 8px 12px;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  transition: all var(--transition);
+}
+
+.sip-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+}
+
+.btn-sip-search {
+  background: var(--primary);
+  border: none;
+  color: white;
+  border-radius: var(--radius-sm);
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-sip-search:hover {
+  background: var(--primary-light);
+  transform: scale(1.05);
+}
+
 .lex-content {
   flex: 1;
   overflow-y: auto;
@@ -1483,4 +1530,86 @@ a:hover {
   .grid-2 {
     grid-template-columns: 1fr;
   }
+}
+
+/* ===== Stats Bar Charts ===== */
+.result-stats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-label {
+  flex: 0 0 150px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-bar-container {
+  flex: 1;
+  position: relative;
+  /* Extra top margin to give space for the MEDIANA label without squishing the row above */
+  margin-top: 14px;
+}
+
+.stat-bar-bg {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  position: relative;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 6px;
+  transition: width 1s ease-out;
+}
+
+.stat-median {
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  width: 2px;
+  background: var(--accent);
+  z-index: 2;
+  box-shadow: 0 0 8px var(--accent);
+  border-radius: 1px;
+}
+
+.stat-median-label {
+  position: absolute;
+  top: -20px;
+  font-size: 0.65rem;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 1px;
+  transform: translateX(-50%);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.stat-value {
+  flex: 0 0 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: left;
 }

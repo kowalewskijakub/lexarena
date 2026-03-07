@@ -127,11 +127,15 @@ export function renderGame() {
 
           <div class="g-panel g-panel-lex">
             <div class="g-panel-head">
-              <img src="/art/legal-book.png" alt="LEX" class="g-panel-art" />
+              <img src="/art/legal-book.png" alt="System Informacji Prawnej" class="g-panel-art" />
               <div>
-                <h2>LEX</h2>
-                <span class="g-panel-subtitle">Baza przepisów</span>
+                <h2>System Informacji Prawnej</h2>
+                <span class="g-panel-subtitle">Wyszukiwarka przepisów</span>
               </div>
+            </div>
+            <div class="sip-search-bar">
+              <input type="text" class="sip-input" placeholder="Szukaj aktu prawnego lub hasła..." />
+              <button class="btn-sip-search">🔍</button>
             </div>
             <div class="lex-content" id="lex-content">
               ${lexHTML}
@@ -182,7 +186,23 @@ function showResult() {
       <div class="result-model">
         <strong>📖 Wzorcowa odpowiedź:</strong><br><br>${currentCase.modelAnswer}
       </div>
-      <h3 class="result-hall-title">⚠️ Halucynacje AI w tym kazusie:</h3>
+      <h3 class="result-hall-title" style="margin-top: 32px; margin-bottom: 16px;">📊 Inni gracze rozważyli w tym kazusie:</h3>
+      <div class="result-stats-container">
+        ${currentCase.stats ? currentCase.stats.map(stat => `
+          <div class="stat-row">
+            <div class="stat-label">${stat.label}</div>
+            <div class="stat-bar-container">
+              <div class="stat-bar-bg">
+                <div class="stat-bar-fill" style="width: ${stat.percentage}%"></div>
+                <div class="stat-median-label" style="left: ${stat.median}%">Mediana</div>
+                <div class="stat-median" style="left: ${stat.median}%"></div>
+              </div>
+            </div>
+            <div class="stat-value">${stat.percentage}%</div>
+          </div>
+        `).join('') : ''}
+      </div>
+      <h3 class="result-hall-title" style="margin-top: 24px;">⚠️ Halucynacje AI w tym kazusie:</h3>
       <div class="result-details">
         ${currentCase.aiParagraphs
       .filter(p => p.isHallucination)
