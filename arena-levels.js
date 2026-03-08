@@ -2,6 +2,24 @@
 
 const lawTrees = [
   {
+    id: 'pracy',
+    title: 'Prawo pracy',
+    icon: '\uD83D\uDCBC',
+    color: '#f59e0b',
+    levels: [
+      { id: 'p1', title: 'Nawiązanie stosunku pracy', subtitle: 'Umowy, rodzaje, zasady', stars: 3, unlocked: true },
+      { id: 'p2', title: 'Rozwiązanie umowy', subtitle: 'Wypowiedzenie, tryb natychmiastowy', stars: 2, unlocked: true },
+      { id: 'p3', title: 'Ochrona szczególna', subtitle: 'Maria Zielińska (Kazus)', stars: 0, unlocked: true,
+        branches: [
+          { id: 'p3a', title: 'Ciąża i macierzyństwo', subtitle: 'Art. 177 KP', stars: 0, unlocked: true },
+          { id: 'p3b', title: 'Wiek przedemerytalny', subtitle: 'Art. 39 KP', stars: 0, unlocked: false },
+        ]
+      },
+      { id: 'p4', title: 'Czas pracy', subtitle: 'Normy, nadgodziny', stars: 0, unlocked: false },
+      { id: 'p5', title: 'Urlopy', subtitle: 'Wypoczynkowe, bezpłatne', stars: 0, unlocked: false },
+    ],
+  },
+  {
     id: 'cywilne',
     title: 'Prawo cywilne',
     icon: '\u2696\uFE0F',

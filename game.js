@@ -13,9 +13,8 @@ function getFilteredCases() {
 }
 
 function selectCase() {
-  const filtered = getFilteredCases();
-  if (filtered.length === 0) return cases[Math.floor(Math.random() * cases.length)];
-  return filtered[Math.floor(Math.random() * filtered.length)];
+  // Hardcoded for prototype: always return Maria Zielińska case
+  return cases.find(c => c.id === 4);
 }
 
 // Generate LEX references based on current case
@@ -44,6 +43,7 @@ function getLexReferences(caseData) {
 }
 
 export function renderGame() {
+  difficulty = 'easy'; // Hardcoded for prototype
   currentCase = selectCase();
   flaggedParagraphs = new Set();
   submitted = false;
@@ -57,12 +57,22 @@ export function renderGame() {
   }).join('');
 
   const lexRefs = getLexReferences(currentCase);
-  const lexHTML = lexRefs.map(r => `
-    <div class="lex-item">
-      <div class="lex-art">${r.art}</div>
-      <div class="lex-title">${r.title}</div>
-      <div class="lex-desc">${r.desc}</div>
-    </div>`).join('');
+  let lexHTML = '';
+  
+  if (currentCase.category === 'Prawo Pracy' && difficulty === 'easy') {
+    lexHTML = `
+      <div id="lex-empty-state" style="text-align: center; color: var(--text-muted); padding: 20px;">
+        Skorzystaj z wyszukiwarki powyżej, aby znaleźć odpowiedni przepis.
+      </div>
+    `;
+  } else {
+    lexHTML = lexRefs.map(r => `
+      <div class="lex-item">
+        <div class="lex-art">${r.art}</div>
+        <div class="lex-title">${r.title}</div>
+        <div class="lex-desc">${r.desc}</div>
+      </div>`).join('');
+  }
 
   return `
     <div class="container">
@@ -267,6 +277,45 @@ export function initGame() {
     if (e.key === 'Enter') sendChat();
   });
 
+  // System Informacji Prawnej Search
+  const sipInput = document.querySelector('.sip-input');
+  const sipSearchBtn = document.querySelector('.btn-sip-search');
+
+  const handleSipSearch = () => {
+    const query = sipInput?.value.toLowerCase() || '';
+    const lexContent = document.getElementById('lex-content');
+    if (!lexContent) return;
+
+    if (currentCase.category === 'Prawo Pracy' && difficulty === 'easy') {
+      if (query.includes('177') || query.includes('ciąża') || query.includes('ciąży') || query.includes('ochrona')) {
+        lexContent.innerHTML = `
+          <div class="lex-item">
+            <div class="lex-art">Art. 177 § 1 KP</div>
+            <div class="lex-title">Ochrona w ciąży</div>
+            <div class="lex-desc">Pracodawca nie może wypowiedzieć ani rozwiązać umowy o pracę w okresie ciąży, a także w okresie urlopu macierzyńskiego pracownicy, chyba że zachodzą przyczyny uzasadniające rozwiązanie umowy bez wypowiedzenia z jej winy i reprezentująca pracownicę zakładowa organizacja związkowa wyraziła na to zgodę.</div>
+          </div>
+        `;
+      } else if (query.trim() === '') {
+        lexContent.innerHTML = `
+          <div id="lex-empty-state" style="text-align: center; color: var(--text-muted); padding: 20px;">
+            Wpisz hasło lub numer artykułu, aby wyszukać.
+          </div>
+        `;
+      } else {
+        lexContent.innerHTML = `
+          <div id="lex-empty-state" style="text-align: center; color: var(--text-muted); padding: 20px;">
+            Brak wyników dla zapytania: "${query}"
+          </div>
+        `;
+      }
+    }
+  };
+
+  sipSearchBtn?.addEventListener('click', handleSipSearch);
+  sipInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') handleSipSearch();
+  });
+
   // Document editor toolbar
   document.querySelectorAll('.doc-tool').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -299,7 +348,10 @@ function sendChat() {
   input.value = '';
 
   setTimeout(() => {
-    const response = chatResponses[Math.floor(Math.random() * chatResponses.length)];
+    let response = chatResponses[Math.floor(Math.random() * chatResponses.length)];
+    if (currentCase.category === 'Prawo Pracy' && difficulty === 'easy' && chatHistory.length === 2) {
+      response = 'Biorąc pod uwagę stan faktyczny, zachęcam do sprawdzenia **Art. 177 § 1 Kodeksu Pracy**. Spróbuj wpisać ten przepis w Systemie Informacji Prawnej (urządzenie obok), aby sprawdzić jego treść.';
+    }
     chatHistory.push({ role: 'bot', text: response });
     const container = document.getElementById('chat-messages');
     if (container) {
